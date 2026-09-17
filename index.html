@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- 모바일에서도 화면 크기에 맞게 보이도록 설정 (반응형 필수) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youngsuk Suh | 포트폴리오</title>
+
+  <!-- 웹 폰트 (Google Fonts - 허용됨) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- 외부 스타일시트 연결 -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- 외부 JavaScript 연결: defer = HTML을 다 읽은 뒤에 JS 실행 -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== 헤더 + 네비게이션 ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#hero" class="logo">Youngsuk.dev</a>
+
+      <!-- 섹션으로 이동하는 앵커 링크 (href="#섹션id") -->
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-buttons">
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="다크 모드 전환">🌙</button>
+        <button type="button" class="icon-btn menu-toggle" id="menu-toggle" aria-label="메뉴 열기/닫기">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== Hero: 인사말 + CTA 버튼 ===== -->
+    <section class="hero" id="hero">
+      <div class="container fade-in">
+        <p class="hero-hello">Hello! 👋</p>
+        <h1 class="hero-title">저는 <span class="highlight">Youngsuk Suh</span>입니다.</h1>
+        <p class="hero-text">AI 시대를 준비하며 개발을 배우는 예비 창업자입니다.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About: 자기소개 + 프로필 이미지 ===== -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title fade-in">About Me</h2>
+        <div class="about-content fade-in">
+          <img src="images/profile.jpg" alt="Youngsuk Suh의 프로필 사진" class="about-image">
+          <div class="about-text">
+            <p>안녕하세요! Youngsuk Suh입니다.
+              영어, 해외 영업, 해외 이커머스·수출 무역, 글로벌 BTL 운영·실행이 저의 강점입니다.</p>
+            <p>AI 시대에는 소프트웨어 기초가 꼭 필요하다고 느껴 개발 공부를 시작했습니다.
+              지금은 AI를 활용한 서비스로 개인사업을 준비하면서 HTML, CSS, JavaScript 기초를 다지고 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Skills: 기술 스택 목록 ===== -->
+    <section class="section section-alt" id="skills">
+      <div class="container">
+        <h2 class="section-title fade-in">Skills</h2>
+        <div class="skills-list fade-in">
+          <article class="skill-card">
+            <h3>영어</h3>
+            <p>해외 파트너와 비즈니스 커뮤니케이션</p>
+          </article>
+          <article class="skill-card">
+            <h3>해외 영업</h3>
+            <p>해외 바이어 발굴 및 영업</p>
+          </article>
+          <article class="skill-card">
+            <h3>해외 이커머스 · 수출 무역</h3>
+            <p>해외 온라인 판매와 수출 업무</p>
+          </article>
+          <article class="skill-card">
+            <h3>글로벌 BTL 운영 · 실행</h3>
+            <p>해외 프로모션·이벤트 현장 운영</p>
+          </article>
+          <article class="skill-card">
+            <h3>HTML / CSS / JavaScript</h3>
+            <p>웹 기초 공부 중 (이 포트폴리오)</p>
+          </article>
+          <article class="skill-card">
+            <h3>Git / GitHub</h3>
+            <p>버전 관리, GitHub Pages 배포</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projects: GitHub API로 채워지는 곳 ===== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title fade-in">Projects</h2>
+        <!-- 로딩/에러/빈 상태 메시지가 들어갈 자리 (JS가 채움) -->
+        <div class="project-status" id="project-status"></div>
+        <!-- 프로젝트 카드들이 들어갈 자리 (JS가 채움) -->
+        <div class="project-list" id="project-list"></div>
+      </div>
+    </section>
+
+    <!-- ===== Contact: 문의 폼 ===== -->
+    <section class="section section-alt" id="contact">
+      <div class="container">
+        <h2 class="section-title fade-in">Contact</h2>
+
+        <!-- novalidate: 브라우저 기본 검사 대신 내가 만든 JS 검사를 사용 -->
+        <form class="contact-form fade-in" id="contact-form" novalidate>
+          <div class="form-group">
+            <!-- label의 for 와 input의 id 가 같아야 서로 연결된다 -->
+            <label for="name">이름</label>
+            <input type="text" id="name" class="form-input" placeholder="홍길동">
+            <p class="error-message" id="name-error"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" class="form-input" placeholder="example@email.com">
+            <p class="error-message" id="email-error"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="message">메시지</label>
+            <textarea id="message" class="form-input" rows="5" placeholder="하고 싶은 말을 적어주세요."></textarea>
+            <p class="error-message" id="message-error"></p>
+          </div>
+
+          <button type="submit" class="btn">Send</button>
+          <p class="success-message" id="success-message"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer: 저작권 + 소셜 링크 ===== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 Youngsuk Suh. All rights reserved.</p>
+      <ul class="social-links">
+        <li><a href="https://github.com/ellysuh22" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <!-- mailto: 를 누르면 메일 앱이 열린다 -->
+        <li><a href="mailto:ellysuh22@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- 맨 위로 가기 버튼 (스크롤 300px 넘으면 보임) -->
+  <button type="button" class="top-button" id="top-button" aria-label="맨 위로 이동">↑</button>
+
+</body>
+</html>
