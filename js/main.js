@@ -409,24 +409,60 @@ contactForm.addEventListener('submit', (event) => {
 
 // ---------------------------------------------------------
 // 8. Hero 타이핑 효과 (보너스)
-// 📌 보너스 : Hero 문장을 타자기처럼 한 글자씩 보여주기
+// 📌 보너스 : 문구 여러 개를 썼다가 지웠다가 반복해서 보여주기
 // 📝 평가 : 부록 D 보너스 과제
 // ---------------------------------------------------------
 const typingText = document.querySelector('#typing-text');
-const TYPING_SPEED = 80; // 글자 하나당 0.08초
 
-// HTML에 적어 둔 문장을 먼저 읽어 두고, 화면은 비운다
-const fullText = typingText.textContent;
-let typedLength = 0;
-typingText.textContent = '';
+// 돌아가며 보여줄 문구들 (여기만 고치면 문구가 바뀐다)
+const TYPING_TEXTS = [
+  'AI 시대를 준비하는 예비 창업자',
+  '지금은 HTML · CSS · JavaScript를 배우는 중',
+];
 
-// 0.08초마다 한 글자씩 늘려서 보여준다
-const typingTimer = setInterval(() => {
-  typedLength = typedLength + 1;
-  typingText.textContent = fullText.slice(0, typedLength); // 앞에서 n글자 자르기
+const TYPING_SPEED = 90;    // 한 글자 쓰는 속도 (0.09초)
+const DELETING_SPEED = 40;  // 한 글자 지우는 속도 (지울 때는 더 빠르게)
+const HOLD_TIME = 1500;     // 다 쓰고 잠시 멈춰 있는 시간 (1.5초)
 
-  if (typedLength === fullText.length) {
-    clearInterval(typingTimer);            // 다 쓰면 반복 멈추기
-    typingText.classList.remove('typing'); // 깜빡이는 커서 숨기기
+// [상태] 지금 몇 번째 문구를, 몇 글자까지, 쓰는 중인지 지우는 중인지
+let textIndex = 0;
+let charCount = 0;
+let isDeleting = false;
+
+const typeLoop = () => {
+  const fullText = TYPING_TEXTS[textIndex]; // 지금 보여줄 문구 하나
+
+  // 지우는 중이면 한 글자 줄이고, 아니면 한 글자 늘린다
+  if (isDeleting) {
+    charCount = charCount - 1;
+  } else {
+    charCount = charCount + 1;
   }
-}, TYPING_SPEED);
+
+  typingText.textContent = fullText.slice(0, charCount); // 앞에서 n글자만 보여주기
+
+  // 다음 글자까지 기다릴 시간
+  let delay = TYPING_SPEED;
+  if (isDeleting) {
+    delay = DELETING_SPEED;
+  }
+
+  if (isDeleting === false && charCount === fullText.length) {
+    // 다 썼으면 → 잠시 멈췄다가 지우기 시작
+    isDeleting = true;
+    delay = HOLD_TIME;
+  } else if (isDeleting === true && charCount === 0) {
+    // 다 지웠으면 → 다음 문구로 넘어간다
+    isDeleting = false;
+    textIndex = textIndex + 1;
+    if (textIndex === TYPING_TEXTS.length) {
+      textIndex = 0; // 마지막 문구까지 끝났으면 처음으로 돌아간다
+    }
+    delay = 400;
+  }
+
+  setTimeout(typeLoop, delay); // 정해진 시간 뒤에 이 함수를 다시 실행 (반복)
+};
+
+typingText.textContent = ''; // HTML에 적힌 문장을 지우고
+typeLoop();                  // 타이핑 시작

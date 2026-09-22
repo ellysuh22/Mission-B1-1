@@ -211,7 +211,7 @@ grep -niE "react|vue|jquery|bootstrap|tailwind" index.html   # 외부 라이브�
 | 맨 위로 버튼 | 스크롤하면 표시, 클릭 시 `scrollTo({ top: 0 })` | **300px** 이상 | [main.js 111줄](js/main.js#L111) · [129~131줄](js/main.js#L129-L131) |
 | 다크 모드 | 토글 → `data-theme` 변경 → `localStorage` 저장 | 저장 키 `theme` | [main.js 19~64줄](js/main.js#L19-L64) |
 | 스크롤 애니메이션 | `IntersectionObserver`, 한 번 나타나면 감시 해제 | threshold **0.2** | [main.js 139~153줄](js/main.js#L139-L153) |
-| 타이핑 효과 (보너스) | Hero 문장을 한 글자씩 표시 | 글자당 **80ms** | [main.js 415~432줄](js/main.js#L415-L432) |
+| 타이핑 효과 (보너스) | 문구 2개를 쓰고 → 1.5초 멈춤 → 지우고 → 다음 문구 (무한 반복) | 쓰기 **90ms** · 지우기 **40ms** · 멈춤 **1.5초** | [main.js 409~468줄](js/main.js#L409-L468) |
 | 언어 필터 (보너스) | 언어 버튼 클릭 → 그 언어 저장소만 표시 | 언어가 없는 저장소는 **기타** | [main.js 190~222줄](js/main.js#L190-L222) |
 
 ### 폼 UX
@@ -366,7 +366,7 @@ Mission-B1-1/
 | 보너스 과제 | 상태 | 구현 방법 | 위치 |
 | --- | --- | --- | --- |
 | 언어별 프로젝트 필터 버튼 | ✅ 구현 | 저장소 언어를 중복 없이 모아 버튼 생성 → 클릭 시 `currentLanguage` 상태 변경 → `filter`로 다시 렌더링 | [main.js 190~222줄](js/main.js#L190-L222) |
-| Hero 타이핑 효과 | ✅ 구현 | `setInterval`로 0.08초마다 `slice`로 한 글자씩 늘려 표시, 끝나면 `clearInterval` | [main.js 415~432줄](js/main.js#L415-L432) |
+| Hero 타이핑 효과 | ✅ 구현 | 문구 2개를 **썼다가 지웠다가 무한 반복**. `setTimeout`으로 다음 글자까지의 시간을 조절하고, `slice`로 앞에서 n글자만 보여줌 | [main.js 409~468줄](js/main.js#L409-L468) |
 | Formspree 실제 메일 전송 | ⚠️ 코드 완료 · 주소 입력 필요 | `fetch`의 `POST`로 입력값을 JSON으로 전송. `FORMSPREE_URL`이 비어 있으면 지금처럼 화면 메시지만 표시 | [main.js 305~309줄](js/main.js#L305-L309) · [358~382줄](js/main.js#L358-L382) |
 | `prefers-color-scheme` 시스템 다크 모드 감지 | ✅ 구현 | `matchMedia`로 컴퓨터 설정 확인 → **저장된 값이 없을 때만** 시스템 설정을 따름 | [main.js 26~39줄](js/main.js#L26-L39) |
 
