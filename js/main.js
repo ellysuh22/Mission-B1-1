@@ -1,15 +1,42 @@
 // =========================================================
+// main.js · 화면의 동작 (누르면 무슨 일이 생기는지)
+// 📌 미션 요구 : const/let만 사용 · addEventListener로 이벤트 연결 · DOM 조작 ·
+//               인터랙션 6가지 · GitHub API(로딩/성공/에러/빈 상태) · 폼 유효성 검사
+// 🎯 과제 목표 : Q3 DOM과 이벤트 · Q4 ES6+ 문법 · Q5 비동기 · Q6 상태 → 렌더링
+// 📝 평가 문항 : 1-2 · 1-3 · 1-4 · 1-5 · 2-4 · 3-1 · 3-2 · 3-3
+// 📖 설명 문서 : README.md(요구사항 ↔ 구현 위치) · Pass.md(5분 답변)
+//
+// 이 파일의 7개 구역
+//   1 다크 모드   2 햄버거 메뉴   3 부드러운 스크롤   4 스크롤 이벤트
+//   5 스크롤 애니메이션   6 GitHub API   7 문의 폼 검사
+// =========================================================
+// =========================================================
 // 이 파일의 모든 기능은 같은 흐름으로 동작한다.
 //   사용자 이벤트 → 상태(변수) 변경 → 화면(DOM) 업데이트
 // =========================================================
 
 // ---------------------------------------------------------
 // 1. 다크 모드  (상태 → 렌더링 흐름 ①)
+// 📌 요구 : 다크 모드 전환 + localStorage 저장으로 새로고침 후에도 유지
+// 🎯 Q6  |  📝 평가 1-2 · 3-1
 // ---------------------------------------------------------
 const themeButton = document.querySelector('#theme-toggle');
 
 // [상태] 저장된 테마가 있으면 그 값, 없으면 'light'
-let theme = localStorage.getItem('theme') || 'light';
+// [보너스] 시스템 다크 모드 감지: 컴퓨터 설정이 다크 모드면 true
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+// [상태] 저장된 테마가 있으면 그 값
+let theme = localStorage.getItem('theme');
+
+// 저장된 값이 없으면(첫 방문) 컴퓨터 설정을 따라간다
+if (theme === null) {
+  if (systemPrefersDark) {
+    theme = 'dark';
+  } else {
+    theme = 'light';
+  }
+}
 
 // [렌더링] 상태(theme)를 보고 화면을 바꾼다
 const renderTheme = () => {
@@ -39,6 +66,8 @@ renderTheme(); // 페이지가 처음 열릴 때 한 번 실행
 
 // ---------------------------------------------------------
 // 2. 햄버거 메뉴 토글
+// 📌 요구 : 모바일에서 ☰ 클릭 시 메뉴 열기/닫기 (classList.toggle)
+// 🎯 Q3  |  📝 평가 1-3 · 2-4
 // ---------------------------------------------------------
 const menuButton = document.querySelector('#menu-toggle');
 const navMenu = document.querySelector('#nav-menu');
@@ -51,6 +80,8 @@ menuButton.addEventListener('click', () => {
 
 // ---------------------------------------------------------
 // 3. 부드러운 스크롤
+// 📌 요구 : 메뉴 클릭 시 해당 섹션으로 부드럽게 이동 (기본 동작은 preventDefault로 막음)
+// 🎯 Q3  |  📝 평가 1-3
 // ---------------------------------------------------------
 // href가 '#'으로 시작하는 모든 링크 (메뉴, 로고, Hero 버튼)
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
@@ -70,6 +101,8 @@ anchorLinks.forEach((link) => {
 
 // ---------------------------------------------------------
 // 4. 스크롤 이벤트: 네비게이션 배경 변경 + 맨 위로 버튼
+// 📌 요구 : 스크롤 60px에서 네비 배경 변경 / 300px에서 맨 위로 버튼 (기준값은 README에 명시)
+// 📝 평가 1-3
 // ---------------------------------------------------------
 const header = document.querySelector('#header');
 const topButton = document.querySelector('#top-button');
@@ -100,6 +133,8 @@ topButton.addEventListener('click', () => {
 
 // ---------------------------------------------------------
 // 5. 스크롤 애니메이션 (Intersection Observer)
+// 📌 요구 : 스크롤 애니메이션 threshold 0.2 (기준값은 README에 명시)
+// 📝 평가 1-3
 // ---------------------------------------------------------
 const fadeElements = document.querySelectorAll('.fade-in');
 
@@ -120,14 +155,20 @@ fadeElements.forEach((element) => {
 
 // ---------------------------------------------------------
 // 6. GitHub API 프로젝트  (상태 → 렌더링 흐름 ②)
+// 📌 요구 : fetch + async/await · 로딩/성공/에러/빈 상태 UI · try-catch(403 포함) · map/filter
+// 🎯 Q4 · Q5  |  📝 평가 1-4 · 3-2 · 3-3
 // ---------------------------------------------------------
 const GITHUB_USERNAME = 'ellysuh22'; // 본인 GitHub 아이디
 const projectStatus = document.querySelector('#project-status');
 const projectList = document.querySelector('#project-list');
+const projectFilters = document.querySelector('#project-filters'); // [보너스] 언어 버튼 자리
 
 // [상태] 'loading' | 'success' | 'error' | 'empty' 중 하나
 let projectState = 'loading';
 let projects = [];
+
+// [상태] 지금 고른 언어 ('all' = 전체) — [보너스] 언어별 필터
+let currentLanguage = 'all';
 
 // 저장소 객체 1개 → 카드 HTML 문자열 1개
 const createProjectCard = (repo) => {
@@ -145,11 +186,47 @@ const createProjectCard = (repo) => {
   `;
 };
 
+// [보너스] 언어 버튼 1개의 HTML 만들기
+const createFilterButton = (language, label) => {
+  // 지금 고른 언어면 active 클래스를 붙여서 색을 다르게 보여준다
+  let activeClass = '';
+  if (currentLanguage === language) {
+    activeClass = ' active';
+  }
+  return `<button type="button" class="filter-btn${activeClass}" data-language="${language}">${label}</button>`;
+};
+
+// [보너스] 언어 버튼들을 만들고, 버튼마다 클릭 이벤트를 연결한다
+const renderFilters = () => {
+  // 저장소들의 언어를 중복 없이 모은다
+  const languages = [];
+  projects.forEach((repo) => {
+    const language = repo.language || '기타';
+    if (languages.includes(language) === false) {
+      languages.push(language);
+    }
+  });
+
+  // '전체' 버튼 + 언어별 버튼
+  projectFilters.innerHTML =
+    createFilterButton('all', '전체') +
+    languages.map((language) => createFilterButton(language, language)).join('');
+
+  // 버튼이 방금 만들어졌으니 지금 이벤트를 연결한다
+  document.querySelectorAll('.filter-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      currentLanguage = button.getAttribute('data-language'); // 상태 변경
+      renderProjects();                                       // 화면 다시 그리기
+    });
+  });
+};
+
 // [렌더링] 상태(projectState)를 보고 Projects 영역을 그린다
 const renderProjects = () => {
   // 먼저 이전 화면을 비운다
   projectStatus.innerHTML = '';
   projectList.innerHTML = '';
+  projectFilters.innerHTML = ''; // [보너스] 언어 버튼도 비우기
 
   if (projectState === 'loading') {
     projectStatus.innerHTML = `
@@ -167,8 +244,18 @@ const renderProjects = () => {
   } else if (projectState === 'empty') {
     projectStatus.innerHTML = `<p class="status-text">표시할 프로젝트가 없습니다.</p>`;
   } else if (projectState === 'success') {
+    renderFilters(); // [보너스] 언어 버튼 먼저 그리기
+
+    // [보너스] filter: 고른 언어의 저장소만 남긴다 ('all'이면 전부 보여줌)
+    const visibleProjects = projects.filter((repo) => {
+      if (currentLanguage === 'all') {
+        return true;
+      }
+      return (repo.language || '기타') === currentLanguage;
+    });
+
     // map: 저장소 배열 → 카드 HTML 배열, join(''): 하나의 문자열로 합치기
-    projectList.innerHTML = projects.map(createProjectCard).join('');
+    projectList.innerHTML = visibleProjects.map(createProjectCard).join('');
   }
 };
 
@@ -208,10 +295,18 @@ loadProjects(); // 페이지가 열리면 바로 불러오기
 
 // ---------------------------------------------------------
 // 7. 문의 폼 유효성 검사  (상태 → 렌더링 흐름 ③)
+// 📌 요구 : 필수값 · 이메일 형식 검사 · 입력칸 근처 에러 메시지 · preventDefault + 성공 메시지
+// 🎯 Q6  |  📝 평가 1-5
 // ---------------------------------------------------------
 const contactForm = document.querySelector('#contact-form');
 const formInputs = document.querySelectorAll('.form-input'); // 이름, 이메일, 메시지
 const successMessage = document.querySelector('#success-message');
+
+// [보너스] 실제 메일 전송 (Formspree)
+//   ① https://formspree.io 에서 무료 가입 → New Form 만들기
+//   ② 받은 주소(https://formspree.io/f/xxxxxxxx)를 아래 따옴표 안에 붙여넣기
+//   ③ 비워 두면 지금처럼 화면에만 성공 메시지가 뜬다 (메일은 가지 않음)
+const FORMSPREE_URL = '';
 
 // 이메일 형식: (글자)@(글자).(글자)  예: abc@naver.com
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -259,6 +354,33 @@ formInputs.forEach((input) => {
   });
 });
 
+// [보너스] 입력한 내용을 Formspree로 보내기
+const sendToFormspree = async () => {
+  successMessage.textContent = '보내는 중...';
+
+  try {
+    const response = await fetch(FORMSPREE_URL, {
+      method: 'POST',                                   // 데이터를 '보내는' 방식
+      headers: { 'Content-Type': 'application/json' },  // JSON으로 보낸다고 알려주기
+      body: JSON.stringify({                            // 보낼 내용을 JSON 글자로 변환
+        name: document.querySelector('#name').value,
+        email: document.querySelector('#email').value,
+        message: document.querySelector('#message').value,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`전송 실패: ${response.status}`);
+    }
+
+    successMessage.textContent = '✅ 메시지가 전송되었습니다. 감사합니다!';
+    contactForm.reset();
+  } catch (error) {
+    console.error(error);
+    successMessage.textContent = '⚠️ 전송에 실패했습니다. 잠시 후 다시 시도해주세요.';
+  }
+};
+
 // [이벤트] 제출 버튼 → 모든 칸 검사 → 결과 표시
 contactForm.addEventListener('submit', (event) => {
   event.preventDefault(); // 페이지 새로고침(기본 제출)을 막는다
@@ -271,9 +393,40 @@ contactForm.addEventListener('submit', (event) => {
   const isValid = errors.name === '' && errors.email === '' && errors.message === '';
 
   if (isValid) {
-    successMessage.textContent = '✅ 메시지가 전송되었습니다. 감사합니다!';
-    contactForm.reset(); // 입력칸 비우기
+    if (FORMSPREE_URL === '') {
+      // Formspree 주소를 아직 넣지 않았으면 화면에만 성공 메시지 (검사 연습용)
+      successMessage.textContent = '✅ 메시지가 전송되었습니다. 감사합니다!';
+      contactForm.reset(); // 입력칸 비우기
+    } else {
+      sendToFormspree(); // [보너스] 실제 메일 보내기
+    }
   } else {
     successMessage.textContent = '';
   }
 });
+
+
+
+// ---------------------------------------------------------
+// 8. Hero 타이핑 효과 (보너스)
+// 📌 보너스 : Hero 문장을 타자기처럼 한 글자씩 보여주기
+// 📝 평가 : 부록 D 보너스 과제
+// ---------------------------------------------------------
+const typingText = document.querySelector('#typing-text');
+const TYPING_SPEED = 80; // 글자 하나당 0.08초
+
+// HTML에 적어 둔 문장을 먼저 읽어 두고, 화면은 비운다
+const fullText = typingText.textContent;
+let typedLength = 0;
+typingText.textContent = '';
+
+// 0.08초마다 한 글자씩 늘려서 보여준다
+const typingTimer = setInterval(() => {
+  typedLength = typedLength + 1;
+  typingText.textContent = fullText.slice(0, typedLength); // 앞에서 n글자 자르기
+
+  if (typedLength === fullText.length) {
+    clearInterval(typingTimer);            // 다 쓰면 반복 멈추기
+    typingText.classList.remove('typing'); // 깜빡이는 커서 숨기기
+  }
+}, TYPING_SPEED);

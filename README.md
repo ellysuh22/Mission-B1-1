@@ -12,6 +12,22 @@
 | 📁 GitHub 저장소 | https://github.com/ellysuh22/Mission-B1-1 |
 | 🖼 스크린샷 (데스크톱 · 모바일 · 다크 모드) | [아래 스크린샷 섹션](#-스크린샷) · [`images/screenshots/`](images/screenshots/) |
 
+
+
+## 🧭 이 미션, 이렇게 봐주세요 (3단계)
+
+이 미션은 **도구(React 등)의 도움 없이 HTML · CSS · JavaScript만으로** 웹사이트를 처음부터 끝까지 만들어 보는 과제입니다.
+화면을 예쁘게 만드는 것보다 **"사용자가 무언가 하면(이벤트) → 값이 바뀌고(상태) → 화면이 다시 그려진다(렌더링)"** 는 웹의 동작 원리를 직접 손으로 구현하고 설명하는 것이 목적입니다.
+그래서 아래 **① 결과물 → ② 왜 · 무엇을 배웠는지 → ③ 평가 문항별 답변** 순서로 보시면 됩니다.
+
+| 순서 | 무엇 | 링크 | 여기서 볼 수 있는 것 |
+| --- | --- | --- | --- |
+| **①** | **결과물 — 자기소개 웹페이지** | 🌐 [배포 사이트 열기](https://ellysuh22.github.io/Mission-B1-1/) · 📄 [index.html 코드 보기](index.html) | 반응형 레이아웃, 다크 모드, 햄버거 메뉴, GitHub 프로젝트 목록, 문의 폼이 실제로 동작하는 화면 |
+| **②** | **과제 목표 — 왜 이 미션을 하나요** | 📘 [아래 "이 미션은 왜 하나요?"](#-이-미션은-왜-하나요) · [공부할 것](#-이-미션에서-공부할-것) | 미션의 목적 4가지, 과제 목표 6개, 공부 순서 |
+| **③** | **평가 항목 — 요구사항별 확인** | 📝 [평가자를 위한 빠른 확인 가이드](#-평가자를-위한-빠른-확인-가이드) · [요구사항 ↔ 구현 위치](#-요구사항--구현-위치) | 3분 시연 순서, 요구사항마다 해당 코드 줄로 가는 링크 |
+
+> 💡 **설명 흐름 예시** — "① 먼저 완성된 사이트를 보여 드리고 → ② 이 미션이 왜 필요한지와 무엇을 배웠는지 말씀드린 뒤 → ③ 평가 문항 하나씩 코드로 짚어 드리겠습니다."
+
 ---
 
 ## 📚 목차
@@ -79,11 +95,11 @@ React의 핵심 개념은 이번 미션에서 손으로 직접 한 일을 **자�
 | # | 과제 목표 | 한 줄로 쉽게 | 이 프로젝트에서 확인할 곳 |
 | --- | --- | --- | --- |
 | 1 | **시맨틱 태그**를 왜 쓰는지, 구조를 어떤 기준으로 설계했는지 | 태그 이름만 봐도 역할을 알 수 있게 (`header`, `main`, `section`…) | [index.html](index.html) |
-| 2 | **Flexbox와 Grid**의 차이와 선택 기준 | Flexbox = 한 줄 서기, Grid = 바둑판 배치 | [style.css 153줄 `.nav`](css/style.css#L153-L158) · [305줄 `.project-list`](css/style.css#L305-L309) |
-| 3 | **querySelector → addEventListener** 흐름 | 요소를 찾고 → "클릭하면 이거 해" 연결 | [main.js 43~49줄 햄버거 메뉴](js/main.js#L43-L49) |
-| 4 | **화살표 함수 · 구조분해 할당 · map/filter** | 짧게 쓰기 · 필요한 값만 꺼내기 · 거르기 · 모양 바꾸기 | [main.js 133~146줄](js/main.js#L133-L146) · [171줄 map](js/main.js#L171) · [191줄 filter](js/main.js#L191) |
-| 5 | **fetch + async/await**, 로딩/성공/실패 UI | 요청하고 기다렸다가, 결과에 따라 다른 화면 보여주기 | [main.js 149~204줄](js/main.js#L149-L204) |
-| 6 | **이벤트 → 상태 변경 → DOM 업데이트** 연결 | 값만 바꾸면 화면이 따라오게 만들기 (React 상태의 기초) | [main.js 7~37줄 다크 모드](js/main.js#L7-L37) |
+| 2 | **Flexbox와 Grid**의 차이와 선택 기준 | Flexbox = 한 줄 서기, Grid = 바둑판 배치 | [style.css 168줄 `.nav`](css/style.css#L168-L173) · [337줄 `.project-list`](css/style.css#L337-L341) |
+| 3 | **querySelector → addEventListener** 흐름 | 요소를 찾고 → "클릭하면 이거 해" 연결 | [main.js 72~78줄 햄버거 메뉴](js/main.js#L72-L78) |
+| 4 | **화살표 함수 · 구조분해 할당 · map/filter** | 짧게 쓰기 · 필요한 값만 꺼내기 · 거르기 · 모양 바꾸기 | [main.js 174~187줄](js/main.js#L174-L187) · [258줄 map](js/main.js#L258) · [278줄 filter](js/main.js#L278) |
+| 5 | **fetch + async/await**, 로딩/성공/실패 UI | 요청하고 기다렸다가, 결과에 따라 다른 화면 보여주기 | [main.js 225~291줄](js/main.js#L225-L291) |
+| 6 | **이벤트 → 상태 변경 → DOM 업데이트** 연결 | 값만 바꾸면 화면이 따라오게 만들기 (React 상태의 기초) | [main.js 19~64줄 다크 모드](js/main.js#L19-L64) |
 
 ### 공부 순서 추천 (처음 배우는 사람용)
 
@@ -111,9 +127,11 @@ React의 핵심 개념은 이번 미션에서 손으로 직접 한 일을 **자�
 | 5 | `F12` → 기기 모양 아이콘(Toggle device toolbar) → 휴대폰 크기 선택 → ☰ 두 번 클릭 | 모바일 레이아웃, 햄버거 메뉴 열기·닫기 |
 | 6 | Contact 폼: ① 빈칸으로 Send ② 이메일에 `abc` 입력 ③ 모두 올바르게 입력 후 Send | ① 필수값 에러 ② 이메일 형식 에러 (입력칸 바로 아래) ③ 새로고침 없이 성공 메시지 |
 | 7 | `F12` → Network 탭 → 새로고침 → `repos` 요청 우클릭 → **Block request URL** → 새로고침 | 에러 상태: "프로젝트를 불러올 수 없습니다" + **다시 시도** 버튼 (Unblock 후 다시 시도 클릭하면 카드 복구) |
+| 8 | **새로고침 직후 Hero 문장 보기** | 보너스: 문장이 **한 글자씩** 나타나고, 끝나면 커서가 사라짐 |
+| 9 | Projects 위의 **언어 버튼**(전체 · Python · CSS …) 클릭 → **전체** 다시 클릭 | 보너스: 그 언어 저장소만 남았다가 다시 전부 표시 |
 
 > **빈 상태**("표시할 프로젝트가 없습니다")는 저장소가 0개일 때만 보여서 배포 사이트에서 바로 보기는 어렵습니다.
-> 코드는 [main.js 167~168줄](js/main.js#L167-L168)과 [193~194줄](js/main.js#L193-L194)에서 확인할 수 있습니다.
+> 코드는 [main.js 244~245줄](js/main.js#L244-L245)과 [280~281줄](js/main.js#L280-L281)에서 확인할 수 있습니다.
 
 ### 제약 사항 검증 (터미널에서 직접 확인 가능)
 
@@ -145,41 +163,41 @@ grep -niE "react|vue|jquery|bootstrap|tailwind" index.html   # 외부 라이브�
 | 요구사항 | 구현 | 위치 |
 | --- | --- | --- |
 | 폴더 역할 분리 | `index.html` · `css/` · `js/` · `images/` | [폴더 구조](#-사용-기술과-폴더-구조) |
-| 외부 CSS·JS 연결 | `<link rel="stylesheet">`, `<script defer>` | [index.html 15~18줄](index.html#L15-L18) |
+| 외부 CSS·JS 연결 | `<link rel="stylesheet">`, `<script defer>` | [index.html 31~34줄](index.html#L31-L34) |
 
 ### HTML 구조 (시맨틱 마크업)
 
 | 요구사항 | 구현 | 위치 |
 | --- | --- | --- |
-| 시맨틱 태그 | `header` › `nav`, `main` › `section` ×5, `article`(카드), `footer` | [index.html 23~161줄](index.html#L23-L161) |
+| 시맨틱 태그 | `header` › `nav`, `main` › `section` ×5, `article`(카드), `footer` | [index.html 41~191줄](index.html#L41-L191) |
 | 필수 섹션 6개 | Hero(인사말 + CTA 버튼 2개) · About(자기소개 + 프로필 사진) · Skills · Projects · Contact · Footer(저작권 + GitHub/Email) | [index.html](index.html) |
-| 섹션 이동 앵커 링크 | `href="#about"` 등 | [index.html 28~33줄](index.html#L28-L33) |
-| 이미지 `alt` | `alt="Youngsuk Suh의 프로필 사진"` | [index.html 62줄](index.html#L62) |
-| `label for` ↔ `input id` | 이름 · 이메일 · 메시지 | [index.html 126~139줄](index.html#L126-L139) |
+| 섹션 이동 앵커 링크 | `href="#about"` 등 | [index.html 46~51줄](index.html#L46-L51) |
+| 이미지 `alt` | `alt="Youngsuk Suh의 프로필 사진"` | [index.html 83줄](index.html#L83) |
+| `label for` ↔ `input id` | 이름 · 이메일 · 메시지 | [index.html 155~168줄](index.html#L155-L168) |
 
 ### CSS (레이아웃 & 반응형)
 
 | 요구사항 | 구현 | 위치 |
 | --- | --- | --- |
-| CSS 변수 (색상·폰트·간격) | `:root { --color-primary; --font-main; --space-md … }` | [style.css 5줄](css/style.css#L5-L33) |
-| 다크 모드 변수 | `[data-theme="dark"] { … }` | [style.css 36줄](css/style.css#L36-L48) |
-| 네비게이션 Flexbox | `display: flex; justify-content: space-between` (로고 왼쪽, 메뉴 오른쪽) | [style.css 153줄](css/style.css#L153-L158) |
-| Projects 카드 Grid | `repeat(auto-fit, minmax(260px, 1fr))` | [style.css 305줄](css/style.css#L305-L309) |
+| CSS 변수 (색상·폰트·간격) | `:root { --color-primary; --font-main; --space-md … }` | [style.css 16줄](css/style.css#L16-L44) |
+| 다크 모드 변수 | `[data-theme="dark"] { … }` | [style.css 48줄](css/style.css#L48-L60) |
+| 네비게이션 Flexbox | `display: flex; justify-content: space-between` (로고 왼쪽, 메뉴 오른쪽) | [style.css 168줄](css/style.css#L168-L173) |
+| Projects 카드 Grid | `repeat(auto-fit, minmax(260px, 1fr))` | [style.css 337줄](css/style.css#L337-L341) |
 | 모바일 퍼스트 | 기본 스타일 = 모바일, 넓은 화면은 `min-width`로 추가 | [style.css 전체](css/style.css) |
-| 브레이크포인트 | **768px**(태블릿), **1024px**(데스크톱) | [style.css 496줄](css/style.css#L496) · [542줄](css/style.css#L542) |
-| 모바일 햄버거 메뉴 | 768px 미만: `.nav-menu` 숨김 + ☰ 표시 | [style.css 188~201줄](css/style.css#L188-L201) |
-| hover + transition, box-shadow | 버튼·카드 hover 시 위로 이동, 카드 그림자 | [style.css 106~123줄 버튼](css/style.css#L106-L123) · [311~325줄 카드](css/style.css#L311-L325) |
+| 브레이크포인트 | **768px**(태블릿), **1024px**(데스크톱) | [style.css 565줄](css/style.css#L565) · [611줄](css/style.css#L611) |
+| 모바일 햄버거 메뉴 | 768px 미만: `.nav-menu` 숨김 + ☰ 표시 | [style.css 203~216줄](css/style.css#L203-L216) |
+| hover + transition, box-shadow | 버튼·카드 hover 시 위로 이동, 카드 그림자 | [style.css 119~136줄 버튼](css/style.css#L119-L136) · [377~391줄 카드](css/style.css#L377-L391) |
 
 ### JavaScript 기초 (DOM & 이벤트)
 
 | 요구사항 | 구현 | 위치 |
 | --- | --- | --- |
-| `defer` 로 연결 | `<script src="js/main.js" defer>` | [index.html 18줄](index.html#L18) |
-| `querySelector` / `querySelectorAll` | 버튼·메뉴 선택 / 링크·애니메이션 요소·입력칸 선택 | [main.js 43줄](js/main.js#L43) · [56줄](js/main.js#L56) |
-| `textContent` / `innerHTML` | 아이콘·에러 메시지 / 프로젝트 카드·스피너 | [main.js 20줄](js/main.js#L20) · [171줄](js/main.js#L171) |
-| `classList.add` · `remove` · `toggle` | 헤더 배경·버튼 표시 / 메뉴 닫기 / 햄버거 | [main.js 84~92줄](js/main.js#L84-L92) · [48줄](js/main.js#L48) |
-| `click` · `submit` · `scroll` · `input` 이벤트 | 모두 사용 | [27줄](js/main.js#L27) · [263줄](js/main.js#L263) · [80줄](js/main.js#L80) · [256줄](js/main.js#L256) |
-| `event.preventDefault()` | 링크 순간 이동 막기, 폼 새로고침 막기 | [main.js 60줄](js/main.js#L60) · [264줄](js/main.js#L264) |
+| `defer` 로 연결 | `<script src="js/main.js" defer>` | [index.html 34줄](index.html#L34) |
+| `querySelector` / `querySelectorAll` | 버튼·메뉴 선택 / 링크·애니메이션 요소·입력칸 선택 | [main.js 72줄](js/main.js#L72) · [87줄](js/main.js#L87) |
+| `textContent` / `innerHTML` | 아이콘·에러 메시지 / 프로젝트 카드·스피너 | [main.js 47줄](js/main.js#L47) · [258줄](js/main.js#L258) |
+| `classList.add` · `remove` · `toggle` | 헤더 배경·버튼 표시 / 메뉴 닫기 / 햄버거 | [main.js 117~125줄](js/main.js#L117-L125) · [77줄](js/main.js#L77) |
+| `click` · `submit` · `scroll` · `input` 이벤트 | 모두 사용 | [54줄](js/main.js#L54) · [385줄](js/main.js#L385) · [113줄](js/main.js#L113) · [351줄](js/main.js#L351) |
+| `event.preventDefault()` | 링크 순간 이동 막기, 폼 새로고침 막기 | [main.js 91줄](js/main.js#L91) · [386줄](js/main.js#L386) |
 
 ### 인터랙션과 기준값
 
@@ -187,42 +205,44 @@ grep -niE "react|vue|jquery|bootstrap|tailwind" index.html   # 외부 라이브�
 
 | 인터랙션 | 동작 | 기준값 | 위치 |
 | --- | --- | --- | --- |
-| 햄버거 메뉴 | ☰ 클릭 → `classList.toggle('active')` → 열기/닫기 | 768px 미만에서 표시 | [main.js 43~49줄](js/main.js#L43-L49) |
-| 부드러운 스크롤 | 메뉴 클릭 → `scrollIntoView({ behavior: 'smooth' })`, 모바일 메뉴 자동 닫힘 | — | [main.js 56~68줄](js/main.js#L56-L68) |
-| 네비게이션 배경 변경 | 스크롤하면 `.scrolled` 추가 | **60px** 이상 | [main.js 77줄](js/main.js#L77) |
-| 맨 위로 버튼 | 스크롤하면 표시, 클릭 시 `scrollTo({ top: 0 })` | **300px** 이상 | [main.js 78줄](js/main.js#L78) · [96~98줄](js/main.js#L96-L98) |
-| 다크 모드 | 토글 → `data-theme` 변경 → `localStorage` 저장 | 저장 키 `theme` | [main.js 7~37줄](js/main.js#L7-L37) |
-| 스크롤 애니메이션 | `IntersectionObserver`, 한 번 나타나면 감시 해제 | threshold **0.2** | [main.js 104~118줄](js/main.js#L104-L118) |
+| 햄버거 메뉴 | ☰ 클릭 → `classList.toggle('active')` → 열기/닫기 | 768px 미만에서 표시 | [main.js 72~78줄](js/main.js#L72-L78) |
+| 부드러운 스크롤 | 메뉴 클릭 → `scrollIntoView({ behavior: 'smooth' })`, 모바일 메뉴 자동 닫힘 | — | [main.js 87~99줄](js/main.js#L87-L99) |
+| 네비게이션 배경 변경 | 스크롤하면 `.scrolled` 추가 | **60px** 이상 | [main.js 110줄](js/main.js#L110) |
+| 맨 위로 버튼 | 스크롤하면 표시, 클릭 시 `scrollTo({ top: 0 })` | **300px** 이상 | [main.js 111줄](js/main.js#L111) · [129~131줄](js/main.js#L129-L131) |
+| 다크 모드 | 토글 → `data-theme` 변경 → `localStorage` 저장 | 저장 키 `theme` | [main.js 19~64줄](js/main.js#L19-L64) |
+| 스크롤 애니메이션 | `IntersectionObserver`, 한 번 나타나면 감시 해제 | threshold **0.2** | [main.js 139~153줄](js/main.js#L139-L153) |
+| 타이핑 효과 (보너스) | Hero 문장을 한 글자씩 표시 | 글자당 **80ms** | [main.js 415~432줄](js/main.js#L415-L432) |
+| 언어 필터 (보너스) | 언어 버튼 클릭 → 그 언어 저장소만 표시 | 언어가 없는 저장소는 **기타** | [main.js 190~222줄](js/main.js#L190-L222) |
 
 ### 폼 UX
 
 | 요구사항 | 구현 | 위치 |
 | --- | --- | --- |
-| 이름 · 이메일 · 메시지 폼 | `novalidate`로 브라우저 기본 검사 대신 JS 검사 사용 | [index.html 123~145줄](index.html#L123-L145) |
-| 필수값 검증 | `input.value.trim() === ''` → "필수 입력 항목입니다." | [main.js 227~237줄](js/main.js#L227-L237) |
-| 이메일 형식 검증 | 정규식 `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` | [main.js 217줄](js/main.js#L217) |
-| 입력칸 근처 에러 메시지 | 각 입력칸 아래 `<p id="email-error">` + 빨간 테두리 | [main.js 240~252줄](js/main.js#L240-L252) |
-| 제출 시 기본 동작 방지 + 성공 메시지 | `preventDefault()` → 3칸 검사 → 성공 시 메시지 + `reset()` | [main.js 263~279줄](js/main.js#L263-L279) |
+| 이름 · 이메일 · 메시지 폼 | `novalidate`로 브라우저 기본 검사 대신 JS 검사 사용 | [index.html 152~174줄](index.html#L152-L174) |
+| 필수값 검증 | `input.value.trim() === ''` → "필수 입력 항목입니다." | [main.js 322~332줄](js/main.js#L322-L332) |
+| 이메일 형식 검증 | 정규식 `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` | [main.js 312줄](js/main.js#L312) |
+| 입력칸 근처 에러 메시지 | 각 입력칸 아래 `<p id="email-error">` + 빨간 테두리 | [main.js 335~347줄](js/main.js#L335-L347) |
+| 제출 시 기본 동작 방지 + 성공 메시지 | `preventDefault()` → 3칸 검사 → 성공 시 메시지 + `reset()` | [main.js 385~406줄](js/main.js#L385-L406) |
 
 ### ES6+ 문법 & 배열 메서드
 
 | 요구사항 | 구현 | 위치 |
 | --- | --- | --- |
-| 화살표 함수 | 모든 이벤트 함수, `renderTheme`, `loadProjects` 등 | [main.js 15줄](js/main.js#L15) |
-| 템플릿 리터럴로 HTML 생성 | 프로젝트 카드 `` `<h3>${name}</h3>` `` | [main.js 138~145줄](js/main.js#L138-L145) |
-| 구조분해 할당 | `const { name, description, html_url, stargazers_count, language } = repo` | [main.js 135줄](js/main.js#L135) |
-| `map` | 저장소 데이터 → 카드 HTML | [main.js 171줄](js/main.js#L171) |
-| `filter` | 포크(fork) 저장소 제외 | [main.js 191줄](js/main.js#L191) |
-| `forEach` | 링크·입력칸·애니메이션 요소마다 이벤트 연결 | [main.js 58줄](js/main.js#L58) · [255줄](js/main.js#L255) |
+| 화살표 함수 | 모든 이벤트 함수, `renderTheme`, `loadProjects` 등 | [main.js 42줄](js/main.js#L42) |
+| 템플릿 리터럴로 HTML 생성 | 프로젝트 카드 `` `<h3>${name}</h3>` `` | [main.js 179~186줄](js/main.js#L179-L186) |
+| 구조분해 할당 | `const { name, description, html_url, stargazers_count, language } = repo` | [main.js 176줄](js/main.js#L176) |
+| `map` | 저장소 데이터 → 카드 HTML | [main.js 258줄](js/main.js#L258) |
+| `filter` | 포크(fork) 저장소 제외 | [main.js 278줄](js/main.js#L278) |
+| `forEach` | 링크·입력칸·애니메이션 요소마다 이벤트 연결 | [main.js 89줄](js/main.js#L89) · [350줄](js/main.js#L350) |
 
 ### 비동기 처리 & API 연동
 
 | 요구사항 | 구현 | 위치 |
 | --- | --- | --- |
-| `fetch` + `async/await` | `https://api.github.com/users/ellysuh22/repos` | [main.js 176~181줄](js/main.js#L176-L181) |
-| `try/catch` 에러 처리 | 실패하면 `projectState = 'error'` | [main.js 180~201줄](js/main.js#L180-L201) |
-| 403 레이트 리밋 처리 | `response.ok`가 false면 `throw` → 에러 UI | [main.js 184~186줄](js/main.js#L184-L186) |
-| 로딩 / 성공 / 에러 / 빈 상태 UI | 스피너 + "로딩 중..." / 카드 목록 / 메시지 + 다시 시도 버튼 / "표시할 프로젝트가 없습니다" | [main.js 149~173줄](js/main.js#L149-L173) |
+| `fetch` + `async/await` | `https://api.github.com/users/ellysuh22/repos` | [main.js 263~268줄](js/main.js#L263-L268) |
+| `try/catch` 에러 처리 | 실패하면 `projectState = 'error'` | [main.js 267~288줄](js/main.js#L267-L288) |
+| 403 레이트 리밋 처리 | `response.ok`가 false면 `throw` → 에러 UI | [main.js 271~273줄](js/main.js#L271-L273) |
+| 로딩 / 성공 / 에러 / 빈 상태 UI | 스피너 + "로딩 중..." / 카드 목록 / 메시지 + 다시 시도 버튼 / "표시할 프로젝트가 없습니다" | [main.js 225~260줄](js/main.js#L225-L260) |
 
 ---
 
@@ -238,9 +258,9 @@ flowchart LR
 
 | # | 이벤트 | 상태 (변수) | 화면 업데이트 | 코드 |
 | --- | --- | --- | --- | --- |
-| ① 다크 모드 | 🌙 버튼 `click` | `theme` : `'light'` ↔ `'dark'` (+ localStorage 저장) | `renderTheme()` → `<html data-theme="dark">` → CSS 변수 색이 바뀌어 전체 화면 변경 | [main.js 7~37줄](js/main.js#L7-L37) |
-| ② GitHub 프로젝트 | 페이지 열림 / 다시 시도 `click` | `projectState` : `'loading'` → `'success'` · `'error'` · `'empty'` | `renderProjects()` → 스피너 / 카드 목록 / 에러 + 다시 시도 / 빈 메시지 | [main.js 122~206줄](js/main.js#L122-L206) |
-| ③ 문의 폼 | 입력칸 `input` / 제출 `submit` | `errors` : `{ name, email, message }` (에러 문장, 없으면 `''`) | `renderError()` → 입력칸 아래 에러 문장 표시·숨김 + 빨간 테두리 | [main.js 210~279줄](js/main.js#L210-L279) |
+| ① 다크 모드 | 🌙 버튼 `click` | `theme` : `'light'` ↔ `'dark'` (+ localStorage 저장) | `renderTheme()` → `<html data-theme="dark">` → CSS 변수 색이 바뀌어 전체 화면 변경 | [main.js 19~64줄](js/main.js#L19-L64) |
+| ② GitHub 프로젝트 | 페이지 열림 / 다시 시도 `click` | `projectState` : `'loading'` → `'success'` · `'error'` · `'empty'` | `renderProjects()` → 스피너 / 카드 목록 / 에러 + 다시 시도 / 빈 메시지 | [main.js 157~293줄](js/main.js#L157-L293) |
+| ③ 문의 폼 | 입력칸 `input` / 제출 `submit` | `errors` : `{ name, email, message }` (에러 문장, 없으면 `''`) | `renderError()` → 입력칸 아래 에러 문장 표시·숨김 + 빨간 테두리 | [main.js 297~406줄](js/main.js#L297-L406) |
 
 **예시 — 다크 모드 코드로 보는 3단계**
 
@@ -285,7 +305,7 @@ themeButton.addEventListener('click', () => {            // ① 이벤트
 | --- | --- |
 | HTML5 | 시맨틱 태그(`header` · `nav` · `main` · `section` · `article` · `footer`), `label for` ↔ `input id`, 이미지 `alt` |
 | CSS3 | `:root` CSS 변수, `[data-theme="dark"]` 다크 모드 변수, Flexbox, Grid(`auto-fit` + `minmax`), 모바일 퍼스트 `@media`(768px · 1024px), `transition` · `box-shadow` |
-| JavaScript (ES6+) | `const` / `let`, 화살표 함수, 템플릿 리터럴, 구조분해 할당, `map` · `filter` · `forEach`, `fetch` + `async` / `await` + `try` / `catch`, `IntersectionObserver`, `localStorage` |
+| JavaScript (ES6+) | `const` / `let`, 화살표 함수, 템플릿 리터럴, 구조분해 할당, `map` · `filter` · `forEach`, `fetch` + `async` / `await` + `try` / `catch`, `IntersectionObserver`, `localStorage`, (보너스) `setInterval` · `matchMedia` · `JSON.stringify` |
 | 외부 API | GitHub REST API — `https://api.github.com/users/ellysuh22/repos` |
 | 외부 리소스 | Google Fonts `Noto Sans KR` (미션에서 허용) |
 | 개발 · 배포 | VS Code + Live Server, Git, GitHub Pages |
@@ -306,6 +326,9 @@ Mission-B1-1/
 └── README.md               # 지금 읽고 있는 문서
 ```
 
+> JS 파일의 구역은 **1 다크 모드 · 2 햄버거 · 3 부드러운 스크롤 · 4 스크롤 이벤트 · 5 스크롤 애니메이션 · 6 GitHub API · 7 문의 폼 · 8 타이핑 효과(보너스)** 입니다.
+> 코드 파일 안에도 구역마다 **📌 미션 요구 · 🎯 과제 목표 · 📝 평가 문항**을 주석으로 적어 두어, 코드만 열어도 어떤 요구사항인지 알 수 있습니다.
+
 > **왜 JS를 파일 하나로 만들었나요?** 초보자가 처음부터 끝까지 한 흐름으로 읽고 설명할 수 있도록, 파일을 나누는 대신 **기능별 번호 주석(1~7)으로 구역을 나눴습니다.**
 
 ---
@@ -320,7 +343,7 @@ Mission-B1-1/
    ```
 2. VS Code로 폴더 열기 → 확장(Extensions)에서 **Live Server** 설치
 3. `index.html` 우클릭 → **Open with Live Server** → 브라우저가 자동으로 열림 (파일을 저장하면 화면이 자동 새로고침)
-4. 다른 GitHub 계정의 저장소를 보여주려면 [js/main.js 124줄](js/main.js#L124)의 `GITHUB_USERNAME`만 바꾸면 됩니다.
+4. 다른 GitHub 계정의 저장소를 보여주려면 [js/main.js 161줄](js/main.js#L161)의 `GITHUB_USERNAME`만 바꾸면 됩니다.
 
 ### GitHub Pages로 배포하기
 
@@ -338,16 +361,16 @@ Mission-B1-1/
 
 ## 📝 보너스 과제와 참고 사항
 
-### 보너스 과제 (선택)
+### 보너스 과제 (선택) — 4가지 모두 구현
 
-이번에는 **필수 요구사항을 정확히 이해하고 설명하는 것**에 집중하기 위해 보너스 과제는 구현하지 않았습니다.
+| 보너스 과제 | 상태 | 구현 방법 | 위치 |
+| --- | --- | --- | --- |
+| 언어별 프로젝트 필터 버튼 | ✅ 구현 | 저장소 언어를 중복 없이 모아 버튼 생성 → 클릭 시 `currentLanguage` 상태 변경 → `filter`로 다시 렌더링 | [main.js 190~222줄](js/main.js#L190-L222) |
+| Hero 타이핑 효과 | ✅ 구현 | `setInterval`로 0.08초마다 `slice`로 한 글자씩 늘려 표시, 끝나면 `clearInterval` | [main.js 415~432줄](js/main.js#L415-L432) |
+| Formspree 실제 메일 전송 | ⚠️ 코드 완료 · 주소 입력 필요 | `fetch`의 `POST`로 입력값을 JSON으로 전송. `FORMSPREE_URL`이 비어 있으면 지금처럼 화면 메시지만 표시 | [main.js 305~309줄](js/main.js#L305-L309) · [358~382줄](js/main.js#L358-L382) |
+| `prefers-color-scheme` 시스템 다크 모드 감지 | ✅ 구현 | `matchMedia`로 컴퓨터 설정 확인 → **저장된 값이 없을 때만** 시스템 설정을 따름 | [main.js 26~39줄](js/main.js#L26-L39) |
 
-| 보너스 과제 | 상태 |
-| --- | --- |
-| 언어별 프로젝트 필터 버튼 | ⬜ 미구현 (`filter`는 포크 저장소 제외에 사용) |
-| Hero 타이핑 효과 | ⬜ 미구현 |
-| Formspree / EmailJS 실제 메일 전송 | ⬜ 미구현 (폼은 검사 + 성공 메시지까지) |
-| `prefers-color-scheme` 시스템 다크 모드 감지 | ⬜ 미구현 (처음 방문 시 라이트 모드) |
+> **Formspree 사용법**: [formspree.io](https://formspree.io)에서 무료 가입 → New Form 생성 → 받은 주소(`https://formspree.io/f/xxxxxxxx`)를 [main.js 309줄](js/main.js#L309)의 `FORMSPREE_URL`에 붙여넣으면 실제 메일이 전송됩니다. 비워 두면 유효성 검사와 성공 메시지만 동작합니다.
 
 ### 참고 사항
 

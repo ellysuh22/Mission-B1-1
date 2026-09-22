@@ -1,8 +1,23 @@
 <!DOCTYPE html>
+<!-- =========================================================
+     index.html · 화면의 뼈대 (무엇이 있는지)
+     📌 미션 요구 : 시맨틱 마크업 / 필수 섹션 6개 / 앵커 링크 / 이미지 alt / label for-id
+     🎯 과제 목표 : Q1 시맨틱 태그
+     📝 평가 문항 : 2-1 파일 분리 · 2-2 시맨틱 태그 · 1-5 문의 폼
+     📖 설명 문서 : README.md(요구사항 ↔ 구현 위치) · Pass.md(5분 답변)
+
+     이 파일의 순서
+       1) head   문서 설정 · CSS/JS 연결
+       2) header 로고 · 메뉴 · 다크모드/햄버거 버튼
+       3) main   hero → about → skills → projects → contact
+       4) footer 저작권 · 링크
+       5) 맨 위로 버튼
+     ========================================================= -->
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <!-- 모바일에서도 화면 크기에 맞게 보이도록 설정 (반응형 필수) -->
+  <!-- 📝 평가 1-1 : 이 줄이 없으면 휴대폰이 화면을 축소해서 보여주고 미디어 쿼리도 안 통한다 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Youngsuk Suh | 포트폴리오</title>
 
@@ -11,6 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 
+  <!-- 📝 평가 2-1 : 구조(HTML) · 모양(CSS) · 동작(JS)을 세 파일로 나눠서 연결 -->
   <!-- 외부 스타일시트 연결 -->
   <link rel="stylesheet" href="css/style.css">
 
@@ -20,6 +36,8 @@
 <body>
 
   <!-- ===== 헤더 + 네비게이션 ===== -->
+  <!-- 📌 요구 : 시맨틱 header/nav · 앵커 링크 · Flexbox(로고 왼쪽 메뉴 오른쪽) · 모바일 햄버거
+       📝 평가 : 2-2 시맨틱 · 3-4 Flexbox · 1-1 반응형 · 1-3 햄버거 · 1-2 다크 모드 -->
   <header class="header" id="header">
     <nav class="nav container">
       <a href="#hero" class="logo">Youngsuk.dev</a>
@@ -42,11 +60,13 @@
   <main>
 
     <!-- ===== Hero: 인사말 + CTA 버튼 ===== -->
+    <!-- 📝 평가 2-2 : 필수 섹션 1/6 - 인사말 + CTA 버튼 2개 -->
     <section class="hero" id="hero">
       <div class="container fade-in">
         <p class="hero-hello">Hello! 👋</p>
         <h1 class="hero-title">저는 <span class="highlight">Youngsuk Suh</span>입니다.</h1>
-        <p class="hero-text">AI 시대를 준비하며 개발을 배우는 예비 창업자입니다.</p>
+        <!-- [보너스] 타이핑 효과: JS가 이 문장을 한 글자씩 다시 써 준다 -->
+        <p class="hero-text typing" id="typing-text">AI 시대를 준비하며 개발을 배우는 예비 창업자입니다.</p>
         <div class="hero-buttons">
           <a href="#projects" class="btn">View Projects</a>
           <a href="#contact" class="btn btn-outline">Contact</a>
@@ -55,6 +75,7 @@
     </section>
 
     <!-- ===== About: 자기소개 + 프로필 이미지 ===== -->
+    <!-- 📝 평가 2-2 : 필수 섹션 2/6 - 자기소개 + 프로필 사진(alt 필수) -->
     <section class="section" id="about">
       <div class="container">
         <h2 class="section-title fade-in">About Me</h2>
@@ -71,6 +92,8 @@
     </section>
 
     <!-- ===== Skills: 기술 스택 목록 ===== -->
+    <!-- 📝 평가 2-2 : 필수 섹션 3/6 - 카드 하나하나가 article
+         🎯 Q1 : "떼어내도 뜻이 통하는 조각"이라서 div가 아니라 article을 썼다 -->
     <section class="section section-alt" id="skills">
       <div class="container">
         <h2 class="section-title fade-in">Skills</h2>
@@ -104,17 +127,23 @@
     </section>
 
     <!-- ===== Projects: GitHub API로 채워지는 곳 ===== -->
+    <!-- 📝 평가 1-4 · 3-2 · 3-3 : 필수 섹션 4/6 - 내용이 비어 있는 이유는
+         GitHub API로 받은 데이터를 JS(main.js 6번 구역)가 채우기 때문 -->
     <section class="section" id="projects">
       <div class="container">
         <h2 class="section-title fade-in">Projects</h2>
         <!-- 로딩/에러/빈 상태 메시지가 들어갈 자리 (JS가 채움) -->
         <div class="project-status" id="project-status"></div>
+        <!-- [보너스] 언어별 필터 버튼이 들어갈 자리 (JS가 채움) -->
+        <div class="project-filters" id="project-filters"></div>
         <!-- 프로젝트 카드들이 들어갈 자리 (JS가 채움) -->
         <div class="project-list" id="project-list"></div>
       </div>
     </section>
 
     <!-- ===== Contact: 문의 폼 ===== -->
+    <!-- 📝 평가 1-5 : 필수 섹션 5/6 - label for ↔ input id 짝 맞추기,
+         에러 문장 자리는 입력칸 바로 아래에 둔다 -->
     <section class="section section-alt" id="contact">
       <div class="container">
         <h2 class="section-title fade-in">Contact</h2>
@@ -149,6 +178,7 @@
   </main>
 
   <!-- ===== Footer: 저작권 + 소셜 링크 ===== -->
+  <!-- 📝 평가 2-2 : 필수 섹션 6/6 - 저작권 + 소셜 링크 -->
   <footer class="footer">
     <div class="container footer-content">
       <p>&copy; 2026 Youngsuk Suh. All rights reserved.</p>
@@ -161,6 +191,7 @@
   </footer>
 
   <!-- 맨 위로 가기 버튼 (스크롤 300px 넘으면 보임) -->
+  <!-- 📝 평가 1-3 : 평소엔 CSS로 숨김. 스크롤 300px을 넘으면 JS가 show 클래스를 붙인다 -->
   <button type="button" class="top-button" id="top-button" aria-label="맨 위로 이동">↑</button>
 
 </body>
